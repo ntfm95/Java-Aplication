@@ -18,7 +18,7 @@ import modeloConection.ConexaoBD;
 public class TelaPrincipal extends javax.swing.JFrame {
 
     ConexaoBD conecta = new ConexaoBD();
-    
+
     FormMedico tela = new FormMedico();
     FormUsuario telaUsu = new FormUsuario();
 
@@ -221,8 +221,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
             conecta.executaSQL("select * from usuarios where usu_nome ='" + jLabelUsuario.getText() + "'");
             conecta.rs.first();
             if (conecta.rs.getString("usu_tipo").equals("Administrador")) {
-               // FormMedico tela = new FormMedico();
-               // tela.setVisible(true);
+                if(tela == null){
+                    tela = new FormMedico();
+                    tela.setVisible(true);
+                    tela.setResizable(false);
+                }else{
+                    tela.setVisible(true);
+                    tela.setResizable(false);
+                }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Você não tem permissão para acessar\n Contate o administrador do sistema");
             }
@@ -237,8 +243,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
             conecta.executaSQL("select * from usuarios where usu_nome ='" + jLabelUsuario.getText() + "'");
             conecta.rs.first();
             if (conecta.rs.getString("usu_tipo").equals("Administrador")) {
-               // FormMedico tela = new FormMedico();
-               // tela.setVisible(true);
+                if(tela == null){
+                    tela = new FormMedico();
+                    tela.setVisible(true);
+                    tela.setResizable(false);
+                }else{
+                    tela.setVisible(true);
+                    tela.setResizable(false);
+                }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Você não tem permissão para acessar\n Contate o administrador do sistema");
             }
@@ -256,8 +268,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
             conecta.executaSQL("select * from usuarios where usu_nome ='" + jLabelUsuario.getText() + "'");
             conecta.rs.first();
             if (conecta.rs.getString("usu_tipo").equals("Administrador")) {
-                FormUsuario tela = new FormUsuario();
-                tela.setVisible(true);
+            if(telaUsu == null){
+                telaUsu = new FormUsuario();
+                telaUsu.setVisible(true);
+                telaUsu.setResizable(false);
+            }else{
+                telaUsu.setVisible(true);
+                telaUsu.setResizable(false);
+            }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Você não tem permissão para acessar\n Contate o administrador do sistema");
             }
