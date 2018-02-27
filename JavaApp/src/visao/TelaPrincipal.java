@@ -20,7 +20,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     ConexaoBD conecta = new ConexaoBD();
     
     FormMedico tela = new FormMedico();
-    FormUsuario telaUsu = new FormUsuario()
+    FormUsuario telaUsu = new FormUsuario();
 
     public TelaPrincipal(String usuario) {
         initComponents();
