@@ -5,17 +5,17 @@
  */
 package visao;
 
-/**
- *
- * @author Joseany
- */
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import modeloConection.ConexaoBD;
+
 public class FormPaciente extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FormPaciente
-     */
+    ConexaoBD conex = new ConexaoBD();
+    
     public FormPaciente() {
         initComponents();
+        preencherBairros();
     }
 
     /**
@@ -87,8 +87,6 @@ public class FormPaciente extends javax.swing.JFrame {
         jLabel9.setText("Complemento :");
 
         jLabel10.setText("Bairro :");
-
-        jComboBoxBairros.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -242,12 +240,13 @@ public class FormPaciente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
-                    .addComponent(jButtonNovo)
-                    .addComponent(jButtonAlterar)
-                    .addComponent(jButtonExcluir)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonSalvar)
-                    .addComponent(jButtonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonNovo)
+                        .addComponent(jButtonAlterar)
+                        .addComponent(jButtonExcluir)
+                        .addComponent(jButtonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -281,6 +280,22 @@ public class FormPaciente extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    public void preencherBairros (){
+        conex.conexao();
+        conex.executaSQL("select * from bairro order by bainome");
+        try{
+            conex.rs.first();
+            jComboBoxBairros.removeAllItems();
+            do{
+                jComboBoxBairros.addItem(conex.rs.getString("bainome"));
+            }while(conex.rs.next());
+            
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(rootPane, "Erro ao preencher bairros" + ex);
+        }
+        conex.desconecta();
+    }
+    
     private void jFormattedTextFieldTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldTelefoneActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextFieldTelefoneActionPerformed
