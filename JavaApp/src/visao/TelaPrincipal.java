@@ -21,7 +21,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     FormMedico tela = new FormMedico();
     FormUsuario telaUsu = new FormUsuario();
-
+    FormPaciente telaPac = new FormPaciente();
+    FormAgenda telaAgenda = new FormAgenda();
+    
     public TelaPrincipal(String usuario) {
         initComponents();
         jLabelUsuario.setText(usuario);
@@ -78,6 +80,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jButtonAgenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Agenda.png"))); // NOI18N
         jButtonAgenda.setToolTipText("Agendamento");
+        jButtonAgenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAgendaActionPerformed(evt);
+            }
+        });
         jPanelInternal.add(jButtonAgenda);
         jButtonAgenda.setBounds(80, 180, 110, 150);
 
@@ -160,6 +167,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuCadastro.add(jMenuItemCadMed);
 
         jMenuItemCadPacientes.setText("Pacientes");
+        jMenuItemCadPacientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCadPacientesActionPerformed(evt);
+            }
+        });
         jMenuCadastro.add(jMenuItemCadPacientes);
 
         jMenuItemCadEnfermeiras.setText("Enfermeiras");
@@ -205,7 +217,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadPacientesActionPerformed
-        // TODO add your handling code here:
+        if(telaPac == null){
+            telaPac = new FormPaciente();
+            telaPac.setVisible(true);
+            telaPac.setResizable(false);
+        }else{
+            telaPac.setVisible(true);
+            telaPac.setResizable(false);
+        }
     }//GEN-LAST:event_jButtonCadPacientesActionPerformed
 
     private void jButtonFecharBemVindoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharBemVindoActionPerformed
@@ -283,6 +302,28 @@ public class TelaPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Você não tem permissão para acessar\n Contate o administrador do sistema" + ex);
         }
     }//GEN-LAST:event_jMenuItemCadUsuariosActionPerformed
+
+    private void jMenuItemCadPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadPacientesActionPerformed
+        if(telaPac == null){
+            telaPac = new FormPaciente();
+            telaPac.setVisible(true);
+            telaPac.setResizable(false);
+        }else{
+                    telaPac.setVisible(true);
+                    telaPac.setResizable(false);
+        }
+    }//GEN-LAST:event_jMenuItemCadPacientesActionPerformed
+
+    private void jButtonAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgendaActionPerformed
+        if(telaAgenda ==  null){
+            telaAgenda = new FormAgenda();
+            telaAgenda.setVisible(true);
+            telaAgenda.setResizable(false);
+        }else{
+            telaAgenda.setVisible(true);
+            telaAgenda.setResizable(false);
+        }
+    }//GEN-LAST:event_jButtonAgendaActionPerformed
 
     /**
      * @param args the command line arguments

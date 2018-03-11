@@ -14,10 +14,7 @@ import modeloDao.DaoMedico;
 import modeloBeans.BeansMedico;
 import modeloBeans.ModeloTabela;
 
-/**
- *
- * @author tntsa
- */
+
 public class FormMedico extends javax.swing.JFrame {
 
     BeansMedico mod = new BeansMedico();

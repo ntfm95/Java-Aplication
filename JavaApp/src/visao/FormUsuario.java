@@ -458,21 +458,21 @@ public class FormUsuario extends javax.swing.JFrame {
         int resposta = 0;
         resposta = JOptionPane.showConfirmDialog(rootPane, "Deseja realmente excluir ?");
         if (resposta == JOptionPane.YES_OPTION) {
-            
+
             mod.setUsuCod(Integer.parseInt(jTextFieldCod.getText()));
-            
+
             dao.Excluir(mod);
-            
+
             jPasswordFieldConfirmSenha.setText("");
             jPasswordFieldSenha.setText("");
             jTextFieldUsuario.setText("");
             jTextFieldPesquisar.setText("");
-            
+
             jButtonAlterar.setEnabled(false);
             jButtonExcluir.setEnabled(false);
-            
+
             jButtonNovo.setEnabled(true);
-            
+
             preencherTabela("select * from usuarios order by usu_nome");
         }
     }//GEN-LAST:event_jButtonExcluirActionPerformed
@@ -481,15 +481,15 @@ public class FormUsuario extends javax.swing.JFrame {
         String usu_nome = "" + jTableUsuario.getValueAt(jTableUsuario.getSelectedRow(), 1);
         conex.conexao();
         conex.executaSQL("select * from usuarios where usu_nome = '" + usu_nome + "'");
-        
-        try{
+
+        try {
             conex.rs.first();
             jTextFieldCod.setText(String.valueOf(conex.rs.getInt("usu_cod")));
             jTextFieldUsuario.setText(conex.rs.getString("usu_nome"));
             jPasswordFieldSenha.setText(conex.rs.getString("usu_senha"));
             jPasswordFieldConfirmSenha.setText(conex.rs.getString("usu_senha"));
             jComboBoxTipo.setSelectedItem(conex.rs.getString("usu_tipo"));
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao selecionar dados");
         }
         conex.desconecta();
@@ -514,7 +514,7 @@ public class FormUsuario extends javax.swing.JFrame {
         ModeloTabela modelo = new ModeloTabela(dados, colunas);
         jTableUsuario.setModel(modelo);
 //ID
-        jTableUsuario.getColumnModel().getColumn(0).setPreferredWidth(23);
+        jTableUsuario.getColumnModel().getColumn(0).setPreferredWidth(30);
         jTableUsuario.getColumnModel().getColumn(0).setResizable(false);
 //Usuario
         jTableUsuario.getColumnModel().getColumn(1).setPreferredWidth(220);

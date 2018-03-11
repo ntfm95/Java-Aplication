@@ -16,6 +16,14 @@ public class BeansPacientes {
     private String cep;
     private String nomeBairro;
     private String pesquisar;
+    private String rg;
+    
+    public String getRg(){
+        return rg;
+    }
+    public void setRg(String rg){
+        this.rg = rg;
+    }
 
     public int getCodPac(){
         return codPac;
